@@ -7,13 +7,6 @@ function disabledButtons() {
   }
 }
 
-function arraysEqual(arr1, arr2) {
-  return (
-    arr1.length === arr2.length &&
-    arr1.every((value, index) => value === arr2[index])
-  );
-}
-
 function winOrLose(moves, winer) {
   const win = [
     [0, 1, 2],
