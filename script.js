@@ -11,8 +11,8 @@ function bot() {
   const field = [
     [0, 1, 2],
     [3, 4, 5],
-    [6, 7, 8]
-  ]
+    [6, 7, 8],
+  ];
 
   const brain = Math.floor(Math.random() * 9);
   return brain;
@@ -46,6 +46,7 @@ function winOrLose(moves, winer) {
 function field() {
   const div = document.createElement("div");
   const restart = document.createElement("button");
+  let botTurn = false;
 
   document.body.appendChild(div);
 
@@ -67,18 +68,20 @@ function field() {
     button.setAttribute("id", i + 1 - 1);
 
     button.addEventListener("click", () => {
-      if (circleOrCross) {
-        button.textContent = "X";
-        circleOrCross = false;
-        cross.push(i);
-        winer = "cross";
-        winOrLose(cross, winer);
-      } else {
+      if (botTurn) {
         button.textContent = "O";
         circleOrCross = true;
         circle.push(i);
         winer = "circle";
         winOrLose(circle, winer);
+        botTurn = false;
+      } else {
+        button.textContent = "X";
+        circleOrCross = false;
+        cross.push(i);
+        winer = "cross";
+        winOrLose(cross, winer);
+        botTurn = true;
       }
 
       button.setAttribute("disabled", "true");
@@ -97,3 +100,4 @@ function field() {
 }
 
 field();
+
